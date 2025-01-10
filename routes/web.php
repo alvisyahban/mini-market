@@ -15,7 +15,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\TransactionDetailController;
 
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome'); // 
 })->name('welcome');
 
@@ -64,7 +64,7 @@ Route::prefix('employees')->name('employee.')->group(function () {
 
 Route::prefix('products')->name('product.')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('index');
-    Route::get('/create', [ProductController::class, 'create'])->name('create'); // Diubah
+    Route::get('/create', [ProductController::class, 'create'])->name('create');
     Route::post('/', [ProductController::class, 'store'])->name('store');
     Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('edit');
     Route::put('/{product}', [ProductController::class, 'update'])->name('update');

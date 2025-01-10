@@ -22,6 +22,7 @@ class ProductController extends Controller
     // Pagination
     $products = $query->paginate(5);
 
+    $products = Product::all();
     return view('products.index', compact('products'));
 }
 

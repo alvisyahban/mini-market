@@ -6,30 +6,22 @@
             <!-- Logo -->
             <div class="flex items-center">
                 <a href="{{ route('dashboard') }}" class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Aplikasi Saya
+                    Dashboard
                 </a>
             </div>
 
             <!-- Navigation Links -->
             <div class="flex items-center space-x-4">
                 @auth
-                    <!-- Dropdown Menu -->
-                    <div class="relative">
-                        <button class="bg-gray-800 text-white px-4 py-2 rounded-md focus:outline-none">
-                            {{ Auth::user()->name }}
-                        </button>
-                        <!-- Dropdown Content -->
-                        <div class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md hidden">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Settings</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </div>
-                @else
-                    <a href="{{ route('login') }}" class="text-gray-900 dark:text-white">Login</a>
-                    <a href="{{ route('register') }}" class="text-gray-900 dark:text-white">Register</a>
+                    @if (Auth::user()->hasRole('admin'))
+                        <a href="{{ route('admin.dashboard') }}" class="text-gray-900 dark:text-white">Dashboard Admin</a>
+                    @elseif (Auth::user()->hasRole('supervisor'))
+                        <a href="{{ route('supervisor.dashboard') }}" class="text-gray-900 dark:text-white">Dashboard Supervisor</a>
+                    @elseif (Auth::user()->hasRole('kasir'))
+                        <a href="{{ route('kasir.dashboard') }}" class="text-gray-900 dark:text-white">Dashboard Kasir</a>
+                    @elseif (Auth::user()->hasRole('gudang'))
+                        <a href="{{ route('gudang.dashboard') }}" class="text-gray-900 dark:text-white">Dashboard Gudang</a>
+                    @endif
                 @endauth
             </div>
         </div>

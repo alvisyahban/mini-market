@@ -23,13 +23,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('products.index') }}" class="flex items-center text-gray-700 hover:bg-gray-300 p-2 rounded-lg dark:text-white dark:hover:bg-gray-700">
+                    <a href="{{ route('product.index') }}" class="flex items-center text-gray-700 hover:bg-gray-300 p-2 rounded-lg dark:text-white dark:hover:bg-gray-700">
                         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 13h18M3 6h18M3 18h18"></path></svg>
                         Products
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('transactions.index') }}" class="flex items-center text-gray-700 hover:bg-gray-300 p-2 rounded-lg dark:text-white dark:hover:bg-gray-700">
+                    <a href="{{ route('transaction.index') }}" class="flex items-center text-gray-700 hover:bg-gray-300 p-2 rounded-lg dark:text-white dark:hover:bg-gray-700">
                         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2 7h-4l2-7zm0 11l2 7h-4l2-7zm-1 7h-1v1h1zm-3 0h-1v1h1zm9-9h1v1h-1zm-5 0h1v1h-1zm4 0h1v1h-1zm0 4h1v1h-1z"></path></svg>
                         Transactions
                     </a>

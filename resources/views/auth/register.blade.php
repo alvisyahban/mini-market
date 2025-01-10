@@ -1,3 +1,5 @@
+<!-- resources/views/register.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,11 +18,17 @@
                 <form method="POST" action="{{ route('register') }}" class="space-y-4 md:space-y-6">
                     @csrf
                     <div class="py-4">
-                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email</label>
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Lengkap</label>
+                        <input type="text" name="name" id="name" 
+                               class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg dark:text-white focus:ring-fuchsia-500 focus:border-fuchsia-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"  
+                               placeholder="Nama Lengkap" required="">
+                    </div>              
+                    <div class="py-4">
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                         <input type="email" name="email" id="email" 
                                class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg dark:text-white focus:ring-fuchsia-500 focus:border-fuchsia-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"  
                                placeholder="name@gmail.com" required="">
-                    </div>              
+                    </div>
                     <div class="py-4">
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                         <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg dark:text-white focus:ring-fuchsia-500 focus:border-fuchsia-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"  
@@ -39,7 +47,7 @@
                             <label for="terms" class="font-light text-gray-500 dark:text-gray-300">I accept the <a class="font-medium text-fuchsia-500 hover:underline dark:text-fuchsia-500" href="#">Terms and Conditions</a></label>
                         </div>
                     </div>
-                    <button type="submit" class="w-full bg-fuchsia-500 text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300" >
+                    <button type="submit" class="w-full bg-f uchsia-500 text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300">
                         Signup 
                     </button>
                     <div class="text-center text-gray-400">
@@ -49,7 +57,6 @@
                     </div>
                 </form>
             </div>
-            
         </div>
     </div>
 </body>

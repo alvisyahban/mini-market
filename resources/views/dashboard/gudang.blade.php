@@ -1,19 +1,32 @@
+<!-- resources/views/dashboard/gudang.blade.php -->
+
 @extends('layouts.dashboard')
 
-@section('title', 'Dashboard Gudang')
-
 @section('content')
-<div class="bg-white shadow rounded-lg p-6">
-    <h1 class="text-2xl font-bold text-gray-800">Dashboard {{ auth()->user()->name }}</h1>
-    <p class="mt-2 text-gray-600">Selamat datang, Pegawai {{ auth()->user()->name }}! Anda dapat memeriksa stok barang</p>
-    <a href="#" class="mt-4 inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Kelola Stok</a>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <div class="bg-white p-4 rounded-lg shadow-lg">
-        <h3 class="text-xl font-semibold text-gray-900">Total Stok</h3>
-        <p class="text-2xl font-bold">500 Items</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard Gudang') }}</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <h3>Selamat Datang, Gudang!</h3>
+                    <p>Ini adalah halaman dashboard khusus untuk gudang.</p>
+
+                    <!-- Tambahkan konten khusus gudang di sini -->
+                    <ul>
+                        <li><a href="{{ route('products.index') }}">Kelola Produk</a></li>
+                        <li><a href="{{ route('transactiondetails.index') }}">Lihat Transaksi Detail</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-</div>
-
-
 @endsection
