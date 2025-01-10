@@ -3,25 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function admin()
     {
-        // Arahkan ke dashboard berdasarkan role
-        $user = Auth::user();
+        return view('dashboard.admin'); // Pastikan view ini ada
+    }
 
-        if ($user->hasRole('Owner')) {
-            return view('dashboard.admin'); // View untuk Owner
-        } elseif ($user->hasRole('Supervisor')) {
-            return view('dashboard.supervisor'); // View untuk Supervisor
-        } elseif ($user->hasRole('Kasir')) {
-            return view('dashboard.kasir'); // View untuk Kasir
-        } elseif ($user->hasRole('Pegawai Gudang')) {
-            return view('dashboard.gudang'); // View untuk Pegawai Gudang
-        }
+    public function kasir()
+    {
+        return view('dashboard.kasir'); // Pastikan view ini ada
+    }
 
-        return abort(403, 'Unauthorized'); // Jika role tidak cocok
+    public function supervisor()
+    {
+        return view('dashboard.supervisor'); // Pastikan view ini ada
+    }
+
+    public function manajer()
+    {
+        return view('dashboard.manajer'); // Pastikan view ini ada
+    }
+
+    public function gudang()
+    {
+        return view('dashboard.gudang'); // Pastikan view ini ada
     }
 }

@@ -1,24 +1,22 @@
+<!-- resources/views/transactions/create.blade.php -->
+
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
-    <h1>Add New Transaction</h1>
+    <h1>Tambah Transaksi Baru</h1>
     <form action="{{ route('transactions.store') }}" method="POST">
         @csrf
-        <div class="form-group mb-3">
-            <label for="product_id">Product:</label>
-            <select name="product_id" class="form-control" required>
-                <option value="" disabled selected>Select Product</option>
-                @foreach ($products as $product)
-                    <option value="{{ $product->id }}">{{ $product->name }} (Stock: {{ $product->stock }})</option>
-                @endforeach
-            </select>
+        <div class="form-group">
+            <label for="transaction_date">Tanggal Transaksi</label>
+            <input type="date" name="transaction_date" id="transaction_date" class="form-control" required>
         </div>
-        <div class="form-group mb-3">
-            <label for="quantity">Quantity:</label>
-            <input type="number" name="quantity" class="form-control" min="1" required>
+        <div class="form-group">
+            <label for="amount">Jumlah</label>
+            <input type="number" name="amount" id="amount" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+        <a href="{{ route('transactions.index') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
 @endsection

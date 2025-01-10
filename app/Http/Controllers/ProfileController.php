@@ -2,59 +2,132 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 
-class ProfileController extends Controller
+
+
+class UserController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): View
+    public function index(Request $request)
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
-    }
+        // Ambil semua roles
+        $data['roles'] = Role::all();
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // Cek apakah ada input pencarian
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            // Filter user berdasarkan nama atau email dengan pagination
+            $data['users'] = User::where('name', 'like', '%' . $search . '%')
+                ->orWhere('email', 'like', '%' . $search . '%')
+                ->paginate(5); // Pagination 5 item per halaman
+        } else {
+            // Jika tidak ada pencarian, ambil semua user dengan pagination
+            $data['users'] = User::paginate(5);
         }
 
-        $request->user()->save();
+        // Input pencarian untuk ditampilkan di view
+        $data['search'] = $request->input('search', '');
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return view('users.index', $data);
     }
 
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
+    public function create()
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
+        $roles = Role::all(); // Ambil semua role
+        return view('users.create', compact('roles'));
+    }
+
+    public function assignRole(Request $request, User $user)
+    {
+        $request->validate([
+            'role' => 'required|exists:roles,name',
         ]);
 
-        $user = $request->user();
+        $user->syncRoles($request->role);
 
-        Auth::logout();
+        return redirect()->back()->with('success', 'Role berhasil diassign!');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|min:8|confirmed',
+            'role' => 'required|exists:roles,name', // Validasi role harus ada
+        ]);
+
+        // Buat user baru
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        // Assign role ke user
+        $user->assignRole($validated['role']);
+
+        $notification = [
+            'message' => 'User berhasil ditambahkan!',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('users.index')->with($notification);
+    }
+
+    public function edit($id)
+    {
+        $data['user'] = User::findOrFail($id);
+        $data['roles'] = Role::all(); // Ambil semua role untuk ditampilkan di view
+        return view('users.edit', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+            'password' => 'nullable|min:8',
+            'role' => 'required|exists:roles,name', // Validasi role harus ada
+        ]);
+
+        // Hash password jika diisi
+        if (!empty($validated['password'])) {
+            $validated['password'] = Hash::make($validated['password']);
+        } else {
+            unset($validated['password']);
+        }
+
+        // Update data user
+        $user->update($validated);
+
+        // Assign role ke user
+        $user->syncRoles($validated['role']);
+
+        $notification = [
+            'message' => 'User berhasil diupdate!',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('users.index')->with($notification);
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
 
         $user->delete();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $notification = [
+            'message' => 'User berhasil dihapus!',
+            'alert-type' => 'success',
+        ];
 
-        return Redirect::to('/');
+        return redirect()->route('users.index')->with($notification);
     }
 }

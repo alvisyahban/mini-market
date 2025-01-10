@@ -48,14 +48,16 @@ class RoleSeeder extends Seeder
         $gudangRole->givePermissionTo(['read-stok', 'update-stok']);  
 
        
+        
+
         $storeManager = Employee::create([
-            'name' => 'Rudi Santoso Adiguna',
+            'name' => 'David Raya',
             'position' => 'Store Manager',  
             'branch_id' => 1,  
         ]);
         $storeManagerUser = User::create([
-            'name' => 'Rudi Santoso Adiguna',
-            'email' => 'rudi.santoso77@gmail.com',
+            'name' => 'David Raya',
+            'email' => 'Raya123@gmail.com',
             'password' => bcrypt('password123'),
         ]);
         $storeManagerUser->assignRole('Manajer Toko'); 
@@ -66,56 +68,54 @@ class RoleSeeder extends Seeder
             'password' => bcrypt('password123'),
         ]);
         $adminUser->assignRole('Admin'); 
-
-
      
         $cashier = Employee::create([
-            'name' => 'Siti Cahya',
+            'name' => 'Inaki Pena',
             'position' => 'Cashier',  
             'branch_id' => 2,  
         ]);
         $cashierUser = User::create([
-            'name' => 'Siti Cahya',
-            'email' => 'siti.cahya22@gmail.com',
+            'name' => 'Inaki Pena',
+            'email' => 'pena123@gmail.com',
             'password' => bcrypt('password123'),
         ]);
         $cashierUser->assignRole('Kasir'); 
         
 
         $supervisor = Employee::create([
-            'name' => 'Budi Pratama N',
+            'name' => 'David De Gea',
             'position' => 'Supervisor',  
             'branch_id' => 3, 
         ]);
         $supervisorUser = User::create([
-            'name' => 'Budi Pratama N',
-            'email' => 'budi.pratama33@gmail.com',
+            'name' => 'David De Gea',
+            'email' => 'degea@gmail.com',
             'password' => bcrypt('password123'),
         ]);
         $supervisorUser->assignRole('Supervisor');  
 
      
         $storeManager = Employee::create([
-            'name' => 'Ivan Setiawan',
+            'name' => 'Ter Stergen',
             'position' => 'Manajer Toko', 
             'branch_id' => 1,  
         ]);
         $storeManagerUser = User::create([
-            'name' => 'Ivan Setiawan',
-            'email' => 'ivan.setiawan@gmail.com',
+            'name' => 'Ter Stergen',
+            'email' => 'stergen@gmail.com',
             'password' => bcrypt('password123'),
         ]);
         $storeManagerUser->assignRole('Manajer Toko');  
 
      
         $warehouse = Employee::create([
-            'name' => 'Dewi Kusuma N',
+            'name' => 'Tibaut Courtois',
             'position' => 'Gudang',  
             'branch_id' => 2,  
         ]);
         $warehouseUser = User::create([
-            'name' => 'Dewi Kusuma N',
-            'email' => 'dewi.kusuma24@gmail.com',
+            'name' => 'Tibaut Courtois',
+            'email' => 'tibaut4@gmail.com',
             'password' => bcrypt('password123'),
         ]);
         $warehouseUser->assignRole('Gudang');

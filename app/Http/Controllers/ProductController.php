@@ -15,8 +15,8 @@ class ProductController extends Controller
     if ($request->has('search')) {
         $search = $request->input('search');
         $query->where('product_name', 'like', '%' . $search . '%')
-              ->orWhere('price', 'like', '%' . $search . '%')
-              ->orWhere('stock', 'like', '%' . $search . '%');
+                ->orWhere('stock', 'like', '%' . $search . '%')
+                ->orWhere('price', 'like', '%' . $search . '%');
     }
 
     // Pagination
@@ -25,6 +25,7 @@ class ProductController extends Controller
     return view('products.index', compact('products'));
 }
 
+
     public function create()
     {
         return view('products.create');
@@ -32,14 +33,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'stock' => 'required|integer|min:0',
-            'price' => 'required|numeric|min:0',
-        ]);
-
         Product::create($request->all());
-        return redirect()->route('products.index')->with('success', 'Product created successfully!');
+        return redirect()->route('product.index');
     }
 
     public function edit(Product $product)
@@ -49,20 +44,13 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'sku' => 'required|string|max:255|unique:products,sku,' . $product->id,
-            'stock' => 'required|integer|min:0',
-            'price' => 'required|numeric|min:0',
-        ]);
-
         $product->update($request->all());
-        return redirect()->route('products.index')->with('success', 'Product updated successfully!');
+        return redirect()->route('product.index');
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
+        return redirect()->route('product.index');
     }
 }

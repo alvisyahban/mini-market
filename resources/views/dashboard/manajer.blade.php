@@ -1,13 +1,13 @@
-<!-- resources/views/dashboard/admin.blade.php -->
+<!-- resources/views/dashboard/manajer.blade.php -->
 
-@extends('layouts.dashboard') <!-- Jika Anda menggunakan layout -->
+@extends('layouts.app') <!-- Jika Anda menggunakan layout -->
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard Admin') }}</div>
+                <div class="card-header">{{ __('Dashboard Manajer') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -16,15 +16,14 @@
                         </div>
                     @endif
 
-                    <h3>Selamat Datang, Admin!</h3>
-                    <p>Ini adalah halaman dashboard khusus untuk admin.</p>
+                    <h3>Selamat Datang, Manajer!</h3>
+                    <p>Ini adalah halaman dashboard khusus untuk manajer.</p>
 
-                    <!-- Tambahkan konten khusus admin di sini -->
+                    <!-- Tambahkan konten khusus manajer di sini -->
                     <ul>
                         <li><a href="{{ route('products.index') }}">Kelola Produk</a></li>
-                        <li><a href="{{ route('users.index') }}">Kelola Pengguna</a></li>
+                        <li><a href="{{ route('employees.index') }}">Kelola Karyawan</a></li>
                         <li><a href="{{ route('transactions.index') }}">Lihat Transaksi</a></li>
-                        <li><a href="{{ route('settings.index') }}">Pengaturan Sistem</a></li>
                     </ul>
                 </div>
             </div>

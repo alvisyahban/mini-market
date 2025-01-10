@@ -36,40 +36,6 @@ class TransactionDetailController extends Controller
         return view('transactionDetail.create', compact('transactions', 'products'));
     }
 
-//     public function store(Request $request)
-// {
-//     $request->validate([
-//         'product_id' => 'required|exists:products,id',
-//         'quantity' => 'required|integer|min:1',
-//     ]);
-
-//     // Ambil data produk berdasarkan ID
-//     $product = Product::find($request->product_id);
-
-//     // Pastikan produk ditemukan
-//     if (!$product) {
-//         return redirect()->back()->withErrors(['error' => 'Product not found']);
-//     }
-
-//     // Cek stok apakah mencukupi
-//     if ($product->stock < $request->quantity) {
-//         return redirect()->back()->withErrors(['error' => 'Stok produk tidak mencukupi']);
-//     }
-
-//     // Kurangi stok produk
-//     $product->stock -= $request->quantity;
-//     $product->save();
-
-//     // Simpan detail transaksi
-//     TransactionDetail::create([
-//         'product_id' => $request->product_id,
-//         'quantity' => $request->quantity,
-//         'price' => $product->price,
-//         'total_price' => $product->price * $request->quantity,
-//     ]);
-
-//     return redirect()->route('transactionDetail.index')->with('success', 'Transaksi berhasil dibuat dan stok berkurang.');
-// }
 public function store(Request $request)
 {
     $request->validate([
