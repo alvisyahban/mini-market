@@ -40,12 +40,6 @@
                         Manajemen Stok
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('logout') }}" class="flex items-center text-gray-700 hover:bg-gray-300 p-2 rounded-lg dark:text-white dark:hover:bg-gray-700">
-                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 9l-3 3m0 0l-3-3m3 3V4m6 4H6m15 0H5"></path></svg>
-                        Logout
-                    </a>r
-                </li>
             </ul>
         </aside>
         <!-- Main Content -->
