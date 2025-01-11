@@ -1,11 +1,9 @@
-<!-- resources/views/products/index.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
     <h1>Daftar Produk</h1>
-    <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">Tambah Produk</a>
+    <a href="{{ route('product.create') }}" class="btn btn-primary mb-3">Tambah Produk</a>
 
     @if (session('success'))
         <div class="alert alert-success">
@@ -31,14 +29,15 @@
                     <td>Rp {{ $product->price }}</td>
                     <td>{{ $product->stock }}</td>
                     @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Manajer Toko') || auth()->user()->hasRole('Gudang'))
-                    <td>
-                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">Hapus</button>
-                        </form>
-                    </td>
+                        <td>
+                            <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')">Hapus</button>
+                            </form>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>

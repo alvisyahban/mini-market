@@ -14,8 +14,8 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212;
-            color: #f5f5f5;
+            background-color: #f5f5dc; /* Cream background */
+            color: #333333; /* Dark text color for better contrast */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -29,7 +29,7 @@
         }
 
         header h1 {
-            color: #ff6f00;
+            color: #1e90ff; /* Blue text */
             font-size: 3rem;
             margin-bottom: 10px;
             animation: slideDown 1s ease;
@@ -38,7 +38,7 @@
         header p {
             font-size: 1.2rem;
             margin-bottom: 30px;
-            color: #e0e0e0;
+            color: #666666; /* Light grey text */
             animation: fadeIn 2s ease;
         }
 
@@ -50,17 +50,17 @@
 
         .button {
             text-decoration: none;
-            padding: 10px 20px;
-            font-size: 1rem;
+            padding: 12px 25px;
+            font-size: 1.1rem;
             border-radius: 5px;
             color: #fff;
-            background-color: #ff6f00;
+            background-color: #1e90ff; /* Blue background */
             transition: background-color 0.3s, transform 0.3s;
             animation: zoomIn 1.5s ease;
         }
 
         .button:hover {
-            background-color: #e65c00;
+            background-color: #4682b4; /* Darker blue on hover */
             transform: scale(1.1);
         }
 
@@ -120,12 +120,16 @@
                 opacity: 1;
             }
         }
+
+        img {
+            width: 200px;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo"></div>
+    <img src="image/jayusman.png" alt="Jayusman Store Logo">
     <h1>Welcome to Jayusman Store</h1>
     <p>Your gateway to the best online shopping experience.</p>
     <div class="button-container">
