@@ -17,7 +17,7 @@
             <input type="number" name="amount" id="amount" class="form-control" value="{{ $transaction->amount }}" required>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
-        <a href="{{ route('transactions.index') }}" class="btn btn-secondary">Batal</a>
+        <a href="{{ route('transaction.index') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
 @endsection

@@ -5,7 +5,7 @@
 @section('content')
 <div class="flex justify-between mb-4">
     <h2 class="text-2xl font-semibold">Stock List</h2>
-    <a href="{{ route('stocks.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Add New Stock</a>
+    <a href="{{ route('stocks.create') }}" class="bg-green-500 text-white px-4 py-2 rounded-lg">Add New Stock</a>
 </div>
 
 <table class="w-full table-auto border-collapse border border-gray-300">

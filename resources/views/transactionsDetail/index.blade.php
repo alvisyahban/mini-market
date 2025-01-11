@@ -12,16 +12,16 @@
             {{ session('success') }}
         </div>
     @endif
-
+    main class= 
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>No</th>
-                <th>Tanggal Transaksi</th>
-                <th>Nama Produk</th>
-                <th>Jumlah</th>
-                <th>Harga</th>
-                <th>Aksi</th>
+                <th class= "border border-cream px-4 py-3 text-center">No</th>
+                <th class= "border border-cream px-4 py-3 text-center">Tanggal Transaksi</th>
+                <th class= "border border-cream px-4 py-3 text-center">Nama Produk</th>
+                <th class= "border border-cream px-4 py-3 text-center">Jumlah</th>
+                <th class= "border border-cream px-4 py-3 text-center">Harga</th>
+                <th class= "border border-cream px-4 py-3 text-center">Aksi</th>
             </tr>
         </thead>
         <tbody>
